@@ -9,9 +9,9 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Flight {
+public class FlightUpdateRequest {
 
-    int airlineId;
+    int flightId;
 
     String name;
 

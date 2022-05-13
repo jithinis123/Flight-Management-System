@@ -1,15 +1,12 @@
-package com.flightapp.flight.model;
+package com.flightapp.admin.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class Flight {
+    int flightId;
 
     int airlineId;
 

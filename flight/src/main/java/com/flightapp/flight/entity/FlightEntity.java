@@ -3,8 +3,7 @@ package com.flightapp.flight.entity;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -13,11 +12,9 @@ public class FlightEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    int id;
+    int flightId;
 
-    @ManyToOne(targetEntity = AirlineEntity.class)
-    @JoinColumn(name="airlineid")
-    AirlineEntity airlineId;
+    int airlineId;
 
     String name;
 
@@ -25,16 +22,14 @@ public class FlightEntity {
 
     String destination;
 
-    Date departure;
+    LocalDateTime departure;
 
-    Date arrival;
+    LocalDateTime arrival;
 
     int discount;
 
     String seats; //A-I
 
     int seatLimit; //1-42
-
-
 
 }

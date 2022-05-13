@@ -7,10 +7,12 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "admin_details")
 @Data
-public class Admin {
+@Table(name = "user_details")
+public class Customer {
     @Id
+    String mailId;
+    String name;
+    String contactNo;
     String username;
-    String password;
 }

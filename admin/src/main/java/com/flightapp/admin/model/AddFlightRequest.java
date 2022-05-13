@@ -1,4 +1,4 @@
-package com.flightapp.flight.model;
+package com.flightapp.admin.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Flight {
+public class AddFlightRequest {
 
     int airlineId;
 

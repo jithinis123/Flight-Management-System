@@ -6,7 +6,7 @@ plugins {
 
 group = 'com.flightapp'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
+sourceCompatibility = "1.9"
 
 configurations {
 	compileOnly {
@@ -35,6 +35,11 @@ dependencies {
 	implementation 'io.jsonwebtoken:jjwt:0.9.1'
 	implementation 'jakarta.xml.bind:jakarta.xml.bind-api:2.3.2'
 	implementation 'org.glassfish.jaxb:jaxb-runtime:2.3.2'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	implementation 'com.google.code.gson:gson:2.9.0'
+	implementation 'org.modelmapper:modelmapper:2.4.5'
+
+
 }
 
 dependencyManagement {
@@ -46,3 +51,4 @@ dependencyManagement {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+targetCompatibility = JavaVersion.VERSION_1_9

@@ -11,16 +11,10 @@ import java.util.List;
 @Table(name = "airline")
 public class AirlineEntity {
     @Id
-    @GeneratedValue
-    @Column(name="airlineid")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     int airlineId;
     String name;
-    File logo;
     String contactNo;
     String address;
     String description;
-
-    @OneToMany(mappedBy = "airlineId", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
-    List<FlightEntity> flights;
-
 }
