@@ -14,5 +14,4 @@ public class Customer {
     String mailId;
     String name;
     String contactNo;
-    String username;
 }

@@ -1,0 +1,122 @@
+{
+	"info": {
+		"_postman_id": "47fc5e03-a12c-4cce-8310-8f95921ab85e",
+		"name": "AdminAPIs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Schedule Flights",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY1MjU0Njg5MiwiaWF0IjoxNjUyNTI4ODkyfQ.0wRMeUekXZYJPXOvW4D6HrNC5j4NbCwvNBlOc4NDDZfDcrv01xlNcVJqdTi6GZCI9jczEgEAZjAM6xnoGyPtvg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n  {\r\n    \"airlineId\": 1,\r\n    \"name\": \"AIR-IND-1A\",\r\n    \"source\": \"Delhi\",\r\n    \"destination\": \"Mumbai\",\r\n    \"departure\": \"2022-05-15T11:45:00.000Z\",\r\n    \"arrival\": \"2022-05-15T13:45:00.000Z\",\r\n    \"discount\": 0,\r\n    \"seats\": \"F\",\r\n    \"seatLimit\": 40\r\n  },\r\n  {\r\n    \"airlineId\": 2,\r\n    \"name\": \"IND-2C\",\r\n    \"source\": \"Chennai\",\r\n    \"destination\": \"Bangalore\",\r\n    \"departure\": \"2022-05-16T11:45:00.000Z\",\r\n    \"arrival\": \"2022-05-16T13:45:00.000Z\",\r\n    \"discount\": 0,\r\n    \"seats\": \"G\",\r\n    \"seatLimit\": 45\r\n  },\r\n  {\r\n    \"airlineId\": 3,\r\n    \"name\": \"SPJ-3E\",\r\n    \"source\": \"Punjab\",\r\n    \"destination\": \"Haryana\",\r\n    \"departure\": \"2022-05-17T11:45:00.000Z\",\r\n    \"arrival\": \"2022-05-17T13:45:00.000Z\",\r\n    \"discount\": 0,\r\n    \"seats\": \"H\",\r\n    \"seatLimit\": 35\r\n  },\r\n  {\r\n    \"airlineId\": 4,\r\n    \"name\": \"ARA-4G\",\r\n    \"source\": \"Pune\",\r\n    \"destination\": \"Goa\",\r\n    \"departure\": \"2022-05-19T11:45:00.000Z\",\r\n    \"arrival\": \"2022-05-19T13:45:00.000Z\",\r\n    \"discount\": 0,\r\n    \"seats\": \"F\",\r\n    \"seatLimit\": 45\r\n  },\r\n  {\r\n    \"airlineId\": 1,\r\n    \"name\": \"AIR-IND-2A\",\r\n    \"source\": \"Telangana\",\r\n    \"destination\": \"Goa\",\r\n    \"departure\": \"2022-06-12T10:45:00.000Z\",\r\n    \"arrival\": \"2022-05-12T11:45:00.000Z\",\r\n    \"discount\": 0,\r\n    \"seats\": \"H\",\r\n    \"seatLimit\": 30\r\n  },\r\n  {\r\n    \"airlineId\": 2,\r\n    \"name\": \"IND-3C\",\r\n    \"source\": \"Bihar\",\r\n    \"destination\": \"Gujarat\",\r\n    \"departure\": \"2022-05-23T09:00:00.000Z\",\r\n    \"arrival\": \"2022-05-23T09:45:00.000Z\",\r\n    \"discount\": 0,\r\n    \"seats\": \"F\",\r\n    \"seatLimit\": 45\r\n  },\r\n  {\r\n    \"airlineId\": 3,\r\n    \"name\": \"SPJ-4E\",\r\n    \"source\": \"Andhra Pradesh\",\r\n    \"destination\": \"Madhya Pradesh\",\r\n    \"departure\": \"2022-05-29T22:30:00.000Z\",\r\n    \"arrival\": \"2022-05-29T23:55:00.000Z\",\r\n    \"discount\": 0,\r\n    \"seats\": \"G\",\r\n    \"seatLimit\": 55\r\n  },\r\n  {\r\n    \"airlineId\": 4,\r\n    \"name\": \"ARA-5G\",\r\n    \"source\": \"Tamilnadu\",\r\n    \"destination\": \"Orissa\",\r\n    \"departure\": \"2022-05-19T11:45:00.000Z\",\r\n    \"arrival\": \"2022-05-19T13:45:00.000Z\",\r\n    \"discount\": 0,\r\n    \"seats\": \"I\",\r\n    \"seatLimit\": 35\r\n  }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8569/api/v1.0/admin/addFlightSchedule",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8569",
+					"path": [
+						"api",
+						"v1.0",
+						"admin",
+						"addFlightSchedule"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Bearer Token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"username\": \"admin\",\r\n  \"password\": \"admin\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8569/api/v1.0/admin/authenticate",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8569",
+					"path": [
+						"api",
+						"v1.0",
+						"admin",
+						"authenticate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register New Airline",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY1MjU0Njg5MiwiaWF0IjoxNjUyNTI4ODkyfQ.0wRMeUekXZYJPXOvW4D6HrNC5j4NbCwvNBlOc4NDDZfDcrv01xlNcVJqdTi6GZCI9jczEgEAZjAM6xnoGyPtvg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"string\",\r\n  \"contactNo\": \"string\",\r\n  \"address\": \"string\",\r\n  \"description\": \"string\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8563/api/v1.0/admin/registerAirline",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8563",
+					"path": [
+						"api",
+						"v1.0",
+						"admin",
+						"registerAirline"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

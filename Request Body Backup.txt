@@ -1,0 +1,291 @@
+===============================================================================================
+##################################  Add Airline Request Body  #################################
+===============================================================================================
+{
+  "name": "Air India",
+  "contactNo": "1242641407",
+  "address": "BLOCK-F, K, JC Rd, opp. LIC HEAD OFFICE, TOWN HALL, Bengaluru, Karnataka 560002",
+  "description": "Airline Services"
+}
+
+{
+  "name": "Indigo",
+  "contactNo": "1244352500",
+  "address": "Upper Ground Floor, Thapar House, Gate No. 2, Western Wing, 124 Janpath, New Delhi – 110001",
+  "description": "Airline Services"
+}
+
+{
+  "name": "SpiceJet",
+  "contactNo": "1242641407",
+  "address": "SpiceJet LTD.,319, Udyog Vihar,Phase IV,Gurgaon - 122016",
+  "description": "Airline Services"
+}
+
+{
+  "name": "AirAsia",
+  "contactNo": "1242641407",
+  "address": "AirAsia LTD.,Monarch Plaza, Brigade Rd, Bengaluru, Karnataka 560001",
+  "description": "Airline Services"
+}
+
+
+==================================================================================================
+################################## Schedule Flights Request Body #################################
+==================================================================================================
+[
+  {
+    "airlineId": 1,
+    "name": "AIR-IND-1A",
+    "source": "Delhi",
+    "destination": "Mumbai",
+    "departure": "2022-05-14T11:45:00.000Z",
+    "arrival": "2022-05-14T13:45:00.000Z",
+    "discount": 0,
+    "seats": "F",
+    "seatLimit": 40
+  },
+  {
+    "airlineId": 2,
+    "name": "IND-2C",
+    "source": "Chennai",
+    "destination": "Bangalore",
+    "departure": "2022-05-14T11:45:00.000Z",
+    "arrival": "2022-05-14T13:45:00.000Z",
+    "discount": 0,
+    "seats": "G",
+    "seatLimit": 45
+  },
+  {
+    "airlineId": 3,
+    "name": "SPJ-3E",
+    "source": "Punjab",
+    "destination": "Haryana",
+    "departure": "2022-05-14T11:45:00.000Z",
+    "arrival": "2022-05-14T13:45:00.000Z",
+    "discount": 0,
+    "seats": "H",
+    "seatLimit": 35
+  },
+  {
+    "airlineId": 4,
+    "name": "ARA-4G",
+    "source": "Pune",
+    "destination": "Goa",
+    "departure": "2022-05-14T11:45:00.000Z",
+    "arrival": "2022-05-14T13:45:00.000Z",
+    "discount": 0,
+    "seats": "F",
+    "seatLimit": 45
+  },
+  {
+    "airlineId": 1,
+    "name": "AIR-IND-2A",
+    "source": "Telangana",
+    "destination": "Goa",
+    "departure": "2022-06-15T10:45:00.000Z",
+    "arrival": "2022-05-14T11:45:00.000Z",
+    "discount": 0,
+    "seats": "H",
+    "seatLimit": 30
+  },
+  {
+    "airlineId": 2,
+    "name": "IND-3C",
+    "source": "Bihar",
+    "destination": "Gujarat",
+    "departure": "2022-05-18T09:00:00.000Z",
+    "arrival": "2022-05-18T09:45:00.000Z",
+    "discount": 0,
+    "seats": "F",
+    "seatLimit": 45
+  },
+  {
+    "airlineId": 3,
+    "name": "SPJ-4E",
+    "source": "Andhra Pradesh",
+    "destination": "Madhya Pradesh",
+    "departure": "2022-05-22T22:30:00.000Z",
+    "arrival": "2022-05-22T23:55:00.000Z",
+    "discount": 0,
+    "seats": "G",
+    "seatLimit": 55
+  },
+  {
+    "airlineId": 4,
+    "name": "ARA-5G",
+    "source": "Tamilnadu",
+    "destination": "Orissa",
+    "departure": "2022-05-14T11:45:00.000Z",
+    "arrival": "2022-05-14T13:45:00.000Z",
+    "discount": 0,
+    "seats": "I",
+    "seatLimit": 35
+  },  
+  {
+    "airlineId": 1,
+    "name": "AIR-IND-1A",
+    "source": "Delhi",
+    "destination": "Mumbai",
+    "departure": "2022-05-15T11:45:00.000Z",
+    "arrival": "2022-05-15T13:45:00.000Z",
+    "discount": 0,
+    "seats": "F",
+    "seatLimit": 40
+  },
+  {
+    "airlineId": 2,
+    "name": "IND-2C",
+    "source": "Chennai",
+    "destination": "Bangalore",
+    "departure": "2022-05-16T11:45:00.000Z",
+    "arrival": "2022-05-16T13:45:00.000Z",
+    "discount": 0,
+    "seats": "G",
+    "seatLimit": 45
+  },
+  {
+    "airlineId": 3,
+    "name": "SPJ-3E",
+    "source": "Punjab",
+    "destination": "Haryana",
+    "departure": "2022-05-17T11:45:00.000Z",
+    "arrival": "2022-05-17T13:45:00.000Z",
+    "discount": 0,
+    "seats": "H",
+    "seatLimit": 35
+  },
+  {
+    "airlineId": 4,
+    "name": "ARA-4G",
+    "source": "Pune",
+    "destination": "Goa",
+    "departure": "2022-05-19T11:45:00.000Z",
+    "arrival": "2022-05-19T13:45:00.000Z",
+    "discount": 0,
+    "seats": "F",
+    "seatLimit": 45
+  },
+  {
+    "airlineId": 1,
+    "name": "AIR-IND-2A",
+    "source": "Telangana",
+    "destination": "Goa",
+    "departure": "2022-06-12T10:45:00.000Z",
+    "arrival": "2022-05-12T11:45:00.000Z",
+    "discount": 0,
+    "seats": "H",
+    "seatLimit": 30
+  },
+  {
+    "airlineId": 2,
+    "name": "IND-3C",
+    "source": "Bihar",
+    "destination": "Gujarat",
+    "departure": "2022-05-23T09:00:00.000Z",
+    "arrival": "2022-05-23T09:45:00.000Z",
+    "discount": 0,
+    "seats": "F",
+    "seatLimit": 45
+  },
+  {
+    "airlineId": 3,
+    "name": "SPJ-4E",
+    "source": "Andhra Pradesh",
+    "destination": "Madhya Pradesh",
+    "departure": "2022-05-29T22:30:00.000Z",
+    "arrival": "2022-05-29T23:55:00.000Z",
+    "discount": 0,
+    "seats": "G",
+    "seatLimit": 55
+  },
+  {
+    "airlineId": 4,
+    "name": "ARA-5G",
+    "source": "Tamilnadu",
+    "destination": "Orissa",
+    "departure": "2022-05-19T11:45:00.000Z",
+    "arrival": "2022-05-19T13:45:00.000Z",
+    "discount": 0,
+    "seats": "I",
+    "seatLimit": 35
+  }
+]
+
+==================================================================================================
+################################### Register User Request Body ###################################
+==================================================================================================
+{
+  "mailId": "ajay@gmail.com",
+  "name": "Ajay",
+  "contactNo": "9887655432"
+}
+------------------------------------
+{
+  "mailId": "kiran@gmail.com",
+  "name": "Kiran",
+  "contactNo": "9663854185"
+}
+------------------------------------
+{
+  "mailId": "ram@gmail.com",
+  "name": "Ram",
+  "contactNo": "8798659832"
+}
+------------------------------------
+{
+  "mailId": "varun@gmail.com",
+  "name": "Varun",
+  "contactNo": "8541965274"
+}
+------------------------------------
+{
+  "mailId": "shane@gmail.com",
+  "name": "Shane",
+  "contactNo": "9992224321"
+}
+
+
+==================================================================================================
+################################### Book Flight Request Body #####################################
+==================================================================================================
+
+{
+  "flightId": 1,
+  "mailId": "ajay@gmail.com",
+  "noOfSeats": 3,
+  "passengers": "Avin,12,1C,M&Arya,20,1D,F&Aisha,29,2E,F",
+  "mealPref": true
+}
+----------------------------------------------------------------------
+{
+  "flightId": 2,
+  "mailId": "kiran@gmail.com",
+  "noOfSeats": 3,
+  "passengers": "Kevin,23,1C,M&Kavya,20,1D,M&Krishna,25,2E,M",
+  "mealPref": false
+}
+----------------------------------------------------------------------
+{
+  "flightId": 3,
+  "mailId": "ram@gmail.com",
+  "noOfSeats": 3,
+  "passengers": "Ranjith,23,1C,M&Rita,20,1D,F&Rishita,25,2E,F",
+  "mealPref": true
+}
+----------------------------------------------------------------------
+{
+  "flightId": 4,
+  "mailId": "varun@gmail.com",
+  "noOfSeats": 2,
+  "passengers": "Vishnu,23,1C,M&Vimal,30,1D,M",
+  "mealPref": true
+}
+----------------------------------------------------------------------
+{
+  "flightId": 5,
+  "mailId": "shane@gmail.com",
+  "noOfSeats": 4,
+  "passengers": "Shane,23,1C,M&Sherin,20,2C,F&Shah,26,3C,M&Sereena,22,4C,F",
+  "mealPref": true
+}

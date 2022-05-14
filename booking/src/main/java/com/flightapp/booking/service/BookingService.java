@@ -1,6 +1,5 @@
 package com.flightapp.booking.service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.flightapp.booking.entity.Booking;
 import com.flightapp.booking.exception.BookingException;
 import com.flightapp.booking.model.BookFlight;
@@ -9,7 +8,6 @@ import com.flightapp.booking.model.FlightDetails;
 import com.flightapp.booking.model.Passenger;
 import com.flightapp.booking.repository.BookingRepo;
 import lombok.extern.slf4j.Slf4j;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;

@@ -16,14 +16,6 @@ public class AdminService {
     @Autowired
     AdminRepo repo;
 
-    public boolean login(Admin admin) {
-        Admin info = fetchAdminDetails(admin.getUsername());
-        if(!info.getPassword().equals(admin.getPassword())) {
-            throw new CustomException("Invalid Credentials");
-        }
-        return true;
-    }
-
     public Admin fetchAdminDetails(String username) {
         Optional<Admin> adminInfo = repo.findByUsername(username);
         if(!adminInfo.isPresent()) {
@@ -39,7 +31,7 @@ public class AdminService {
         return true;
     }
 
-    public static String hashPassword(String password) {
+    public String hashPassword(String password) {
         String salt = BCrypt.gensalt(10);
         String hashed_password = BCrypt.hashpw(password, salt);
         return(hashed_password);

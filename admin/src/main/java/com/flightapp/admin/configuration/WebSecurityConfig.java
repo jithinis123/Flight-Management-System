@@ -48,7 +48,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf().disable()
-                .authorizeRequests().antMatchers("/**/admin/authenticate", "/**/swagger-ui/**", "/v3/api-docs/**",
+                .authorizeRequests().antMatchers("/**/admin/authenticate", "/swagger-ui/**", "/v3/api-docs/**",
                         "/**/addAdmin", "/**/admin/status", "/**/customer/**").permitAll().
                         anyRequest().authenticated().and().
                         exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()

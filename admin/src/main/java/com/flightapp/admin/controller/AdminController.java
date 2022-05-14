@@ -9,9 +9,11 @@ import com.flightapp.admin.service.AdminService;
 import com.flightapp.admin.service.FlightService;
 import com.flightapp.admin.service.JwtUserDetailsService;
 import com.flightapp.admin.util.JwtTokenUtil;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
@@ -22,7 +24,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/api/v1.0/admin")
+@SecurityRequirement(name="admin-service")
 public class AdminController {
 
     @Autowired
@@ -40,6 +44,11 @@ public class AdminController {
     @Autowired
     private JwtUserDetailsService userDetailsService;
 
+    @Autowired
+    private KafkaTemplate<String, List<AddFlightRequest>> kafkaTemplate;
+
+    private static final String TOPIC = "flight-schedules";
+
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody Admin adminDetails) throws Exception {
 
@@ -53,15 +62,9 @@ public class AdminController {
         return ResponseEntity.ok(new JwtResponse(token));
     }
 
-    @GetMapping("/status")
+    @GetMapping(value = "/status", produces = "text/plain")
     public ResponseEntity<String> getStatus(){
         return new ResponseEntity<>("Admin application is running", HttpStatus.OK);
-    }
-
-    @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody Admin admin) {
-        adminService.login(admin);
-        return new ResponseEntity<>("Login Successful", HttpStatus.OK);
     }
 
     @PostMapping("/addAdmin")
@@ -77,7 +80,8 @@ public class AdminController {
 
     @PostMapping("/addFlightSchedule")
     public ResponseEntity<String> addFlights(@RequestBody List<AddFlightRequest> addFlightRequest) {
-        return new ResponseEntity<>(flightService.addFlights(addFlightRequest), HttpStatus.OK);
+        kafkaTemplate.send(TOPIC, addFlightRequest);
+        return new ResponseEntity<>("Flight schedule(s) sent successfully", HttpStatus.OK);
     }
 
     private void authenticate(String username, String password) throws Exception {

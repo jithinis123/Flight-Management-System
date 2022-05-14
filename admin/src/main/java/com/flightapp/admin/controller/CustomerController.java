@@ -38,8 +38,9 @@ public class CustomerController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<Customer> registerCustomer(@RequestBody Customer customer) {
-        return new ResponseEntity<>(customerService.addNewCustomer(customer), HttpStatus.OK);
+    public ResponseEntity<String> registerCustomer(@RequestBody Customer customer) {
+        customerService.addNewCustomer(customer);
+        return new ResponseEntity<>("Registration successful!", HttpStatus.OK);
     }
 
     @PostMapping("/bookFlight")

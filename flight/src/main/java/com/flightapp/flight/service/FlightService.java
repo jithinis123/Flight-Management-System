@@ -7,8 +7,10 @@ import com.flightapp.flight.exception.FlightException;
 import com.flightapp.flight.model.AirlineRequest;
 import com.flightapp.flight.model.Flight;
 import com.flightapp.flight.model.FlightUpdateRequest;
+import com.flightapp.flight.model.SearchFlightResponse;
 import com.flightapp.flight.repository.AirlineRepo;
 import com.flightapp.flight.repository.FlightRepo;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +24,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@Slf4j
 public class FlightService {
 
     @Autowired
@@ -36,18 +39,17 @@ public class FlightService {
         return flightRepo.findAll();
     }
 
-    public List<String> addAirlineSchedule(List<Flight> flights){
-        ArrayList<String> errors = new ArrayList<>();
+    @Transactional
+    public void addAirlineSchedule(List<Flight> flights){
         for(Flight flight:flights) {
             Optional<AirlineEntity> airline = airlineRepo.findById(flight.getAirlineId());
             if (!airline.isPresent()) {
-                errors.add("Airline Id " + flight.getAirlineId() + " not found in database for flight " + flight);
+                log.error("Airline Id " + flight.getAirlineId() + " not found in database for flight " + flight);
             } else {
                 FlightEntity flightEntity = modelMapper.map(flight, FlightEntity.class);
                 flightRepo.save(flightEntity);
             }
         }
-        return errors;
     }
 
     public void deleteFlight(int flightId){
@@ -86,14 +88,21 @@ public class FlightService {
         return flight;
     }
 
-    public List<FlightEntity> searchFlight(String source, String destination, String departure, String arrival) {
+    public List<SearchFlightResponse> searchFlight(String source, String destination, String departure, String arrival) {
+        List<SearchFlightResponse> responses = new ArrayList<>();
         List<FlightEntity> flights = flightRepo.searchFlight(source.trim(), destination.trim());
         if(departure!=null){
             flights = flights.stream().filter(x->x.getDeparture().isAfter(convertStringToLocalDateTime(departure.trim()))).collect(Collectors.toList());
         } if(arrival!=null) {
             flights = flights.stream().filter(x->x.getArrival().isBefore(convertStringToLocalDateTime(arrival.trim()))).collect(Collectors.toList());
         }
-        return flights;
+        for(FlightEntity f: flights) {
+            String airLineName = airlineRepo.findById(f.getAirlineId()).get().getName();
+            SearchFlightResponse response = modelMapper.map(f, SearchFlightResponse.class);
+            response.setAirlineName(airLineName);
+            responses.add(response);
+        }
+        return responses;
     }
 
     public LocalDateTime convertStringToLocalDateTime(String dateTime) {

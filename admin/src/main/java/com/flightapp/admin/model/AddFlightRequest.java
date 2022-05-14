@@ -19,9 +19,9 @@ public class AddFlightRequest {
 
     String destination;
 
-    LocalDateTime departure;
+    String departure;
 
-    LocalDateTime arrival;
+    String arrival;
 
     int discount;
 

@@ -6,6 +6,7 @@ import com.flightapp.flight.entity.FlightEntity;
 import com.flightapp.flight.model.AirlineRequest;
 import com.flightapp.flight.model.Flight;
 import com.flightapp.flight.model.FlightUpdateRequest;
+import com.flightapp.flight.model.SearchFlightResponse;
 import com.flightapp.flight.service.FlightService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,14 +41,14 @@ public class FlightController {
         return new ResponseEntity<>(service.registerAirline(airline), HttpStatus.OK);
     }
 
-    @PostMapping("/airline/inventory/add")
-    public ResponseEntity<String> addAirlineInventory(@RequestBody List<Flight> flightList) {
-        List<String> status = service.addAirlineSchedule(flightList);
-        if(status.size()==0){
-            return new ResponseEntity<>("Flights saved successfully", HttpStatus.OK);
-        }
-        return new ResponseEntity<>(status.toString(), HttpStatus.OK);
-    }
+//    @PostMapping("/airline/inventory/add")
+//    public ResponseEntity<String> addAirlineInventory(@RequestBody List<Flight> flightList) {
+//        List<String> status = service.addAirlineSchedule(flightList);
+//        if(status.size()==0){
+//            return new ResponseEntity<>("Flights saved successfully", HttpStatus.OK);
+//        }
+//        return new ResponseEntity<>(status.toString(), HttpStatus.OK);
+//    }
 
     @PostMapping("/updateFlight")
     public ResponseEntity<Optional<FlightEntity>> updateFlight(@RequestBody FlightUpdateRequest flight) {
@@ -61,7 +62,7 @@ public class FlightController {
     }
 
     @GetMapping("/searchFlight")
-    public ResponseEntity<List<FlightEntity>> searchFlight(
+    public ResponseEntity<List<SearchFlightResponse>> searchFlight(
             @RequestParam String source, String destination,
             @RequestParam(required = false) String departureAfter,
             @RequestParam(required = false) String arrivalBefore) {
