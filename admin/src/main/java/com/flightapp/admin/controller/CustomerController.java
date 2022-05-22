@@ -7,6 +7,7 @@ import com.flightapp.admin.model.Flight;
 import com.flightapp.admin.service.BookingService;
 import com.flightapp.admin.service.CustomerService;
 import com.flightapp.admin.service.FlightService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@Slf4j
 @RequestMapping("/api/v1.0/customer")
 public class CustomerController {
 
@@ -52,9 +54,9 @@ public class CustomerController {
     @GetMapping("/searchFlight")
     public ResponseEntity<Object> searchFlight(
             @RequestParam String source, String destination,
-            @RequestParam(required = false) String departureAfter,
-            @RequestParam(required = false) String arrivalBefore) {
-        return new ResponseEntity<>(flightService.searchFlight(source, destination, departureAfter, arrivalBefore), HttpStatus.OK);
+            @RequestParam(required = false) String departure,
+            @RequestParam(required = false) String arrival) {
+        return new ResponseEntity<>(flightService.searchFlight(source, destination, departure, arrival), HttpStatus.OK);
     }
 
     @GetMapping("/getBookingDetails/{pnr}")
