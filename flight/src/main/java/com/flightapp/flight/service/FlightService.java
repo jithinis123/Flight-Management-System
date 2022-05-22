@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -90,25 +91,44 @@ public class FlightService {
 
     public List<SearchFlightResponse> searchFlight(String source, String destination, String departure, String arrival) {
         List<SearchFlightResponse> responses = new ArrayList<>();
-        List<FlightEntity> flights = flightRepo.searchFlight(source.trim(), destination.trim());
+        List<FlightEntity> departureList;
+        List<FlightEntity> arrivalList = new ArrayList<>();
+        departureList = flightRepo.searchFlight(source.trim(), destination.trim());
         if(departure!=null){
-            flights = flights.stream().filter(x->x.getDeparture().isAfter(convertStringToLocalDateTime(departure.trim()))).collect(Collectors.toList());
-        } if(arrival!=null) {
-            flights = flights.stream().filter(x->x.getArrival().isBefore(convertStringToLocalDateTime(arrival.trim()))).collect(Collectors.toList());
+            departureList=(departureList.stream().filter(x->x.getDeparture().toLocalDate().equals(convertStringToLocalDate(departure.trim()))).collect(Collectors.toList()));
         }
+        if(arrival!=null) {
+            arrivalList = flightRepo.searchFlight(destination.trim(), source.trim());
+            arrivalList=(arrivalList.stream().filter(x->x.getDeparture().toLocalDate().equals(convertStringToLocalDate(arrival.trim()))).collect(Collectors.toList()));
+        }
+        departureList.addAll(arrivalList);
+        for(FlightEntity f: departureList) {
+            String airLineName = airlineRepo.findById(f.getAirlineId()).get().getName();
+            SearchFlightResponse response = modelMapper.map(f, SearchFlightResponse.class);
+            response.setAirlineName(airLineName);
+            responses.add(response);
+        }
+
+        return responses;
+    }
+
+    public List<SearchFlightResponse> viewSchedule(){
+        List<SearchFlightResponse> responses = new ArrayList<>();
+        List<FlightEntity> flights = flightRepo.findAll();
         for(FlightEntity f: flights) {
             String airLineName = airlineRepo.findById(f.getAirlineId()).get().getName();
             SearchFlightResponse response = modelMapper.map(f, SearchFlightResponse.class);
             response.setAirlineName(airLineName);
             responses.add(response);
         }
+
         return responses;
     }
 
-    public LocalDateTime convertStringToLocalDateTime(String dateTime) {
-        dateTime = dateTime.replace("T", " ");
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        return LocalDateTime.parse(dateTime, formatter);
+    public LocalDate convertStringToLocalDate(String dateTime) {
+        dateTime = dateTime.split("T")[0];
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return LocalDate.parse(dateTime, formatter);
     }
 
     public AirlineEntity registerAirline(AirlineRequest airline) {

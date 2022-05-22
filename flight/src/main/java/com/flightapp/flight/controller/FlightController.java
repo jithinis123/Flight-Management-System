@@ -41,15 +41,6 @@ public class FlightController {
         return new ResponseEntity<>(service.registerAirline(airline), HttpStatus.OK);
     }
 
-//    @PostMapping("/airline/inventory/add")
-//    public ResponseEntity<String> addAirlineInventory(@RequestBody List<Flight> flightList) {
-//        List<String> status = service.addAirlineSchedule(flightList);
-//        if(status.size()==0){
-//            return new ResponseEntity<>("Flights saved successfully", HttpStatus.OK);
-//        }
-//        return new ResponseEntity<>(status.toString(), HttpStatus.OK);
-//    }
-
     @PostMapping("/updateFlight")
     public ResponseEntity<Optional<FlightEntity>> updateFlight(@RequestBody FlightUpdateRequest flight) {
         return new ResponseEntity<>(service.updateFlight(flight), HttpStatus.OK);
@@ -64,9 +55,14 @@ public class FlightController {
     @GetMapping("/searchFlight")
     public ResponseEntity<List<SearchFlightResponse>> searchFlight(
             @RequestParam String source, String destination,
-            @RequestParam(required = false) String departureAfter,
-            @RequestParam(required = false) String arrivalBefore) {
-        return new ResponseEntity<>(service.searchFlight(source, destination, departureAfter, arrivalBefore), HttpStatus.OK);
+            @RequestParam(required = false) String departure,
+            @RequestParam(required = false) String arrival) {
+        return new ResponseEntity<>(service.searchFlight(source, destination, departure, arrival), HttpStatus.OK);
+    }
+
+    @GetMapping("/viewSchedules")
+    public ResponseEntity<List<SearchFlightResponse>> viewSchedule() {
+        return new ResponseEntity<>(service.viewSchedule(), HttpStatus.OK);
     }
 
     @GetMapping("/searchFlight/{id}")
